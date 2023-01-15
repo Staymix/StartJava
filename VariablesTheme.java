@@ -24,7 +24,7 @@ public class VariablesTheme {
         int discountSum = (sumPrice / 100) * 11;
         int discountPrice = sumPrice - discountSum;
         System.out.println("1. Сумма скидки " + discountSum
-        +  "\n2. Общая стоимость товаров со скидкой " + discountPrice);
+                +  "\n2. Общая стоимость товаров со скидкой " + discountPrice);
 
         System.out.println("\n3. Вывод слова JAVA\n");
         System.out.println("    J   a  v     v  a   \n" + 
@@ -78,15 +78,20 @@ public class VariablesTheme {
 
         System.out.println("\n6. Вывод символов и их кодов.\n");
         char lattice = '#';
-        System.out.println("Код символа 35 соответствует символу " + lattice);
+        int latticeInt = lattice;
+        System.out.println("Код символа " + latticeInt + " соответствует " + lattice);
         char ampersand = '&';
-        System.out.println("Код символа 38 соответствует символу " + ampersand);
+        int ampersandInt = ampersand;
+        System.out.println("Код символа " + ampersandInt + " соответствует " + ampersand);
         char at = '@';
-        System.out.println("Код символа 64 соответствует символу " + at);
+        int atInt = at;
+        System.out.println("Код символа " + atInt + " соответствует " + at);
         char caret = '^';
-        System.out.println("Код символа 94 соответствует символу " + caret);
+        int caretInt = caret;
+        System.out.println("Код символа " + caretInt + " соответствует " + caret);
         char underscore = '_';
-        System.out.println("Код символа 95 соответствует символу " + underscore);
+        int underscoreInt = underscore;
+        System.out.println("Код символа " + underscoreInt + " соответствует " + underscore);
 
         System.out.println("\n7. Вывод в консоль ASCII-арт Дюка.\n");
         char slash = '/';
@@ -103,11 +108,9 @@ public class VariablesTheme {
 
         System.out.println("\n8. Вывод количества сотен, десятков и единиц числа.\n");
         number1 = 123;
-        int ones = number1%10;
-        number1 /= 10;
-        int tens = number1%10;
-        number1 /= 10;
-        int hundreds = number1%10;
+        int ones = number1 % 10;
+        int tens = number1 / 10 % 10;
+        int hundreds = number1 / 100;
         int sumDigits = ones + tens + hundreds;
         int productDigits = ones * tens * hundreds;
         System.out.println("Число 123 содержит\n" + 
@@ -116,9 +119,9 @@ public class VariablesTheme {
                 sumDigits + "\nПроизведение = " + productDigits);
 
         System.out.println("\n9. Вывод времени.\n");
-        number1 = 86399;
+        number1 = 86400;
         int hour = number1 / 3600;
-        int minute = number1 / 1440;
+        int minute = number1 / 1440 % 60;
         int second = number1 % 60;
         System.out.println(hour + ":" + minute + ":" + second);
     }
