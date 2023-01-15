@@ -119,7 +119,7 @@ public class VariablesTheme {
                 sumDigits + "\nПроизведение = " + productDigits);
 
         System.out.println("\n9. Вывод времени.\n");
-        number1 = 86400;
+        number1 = 86399;
         int hour = number1 / 3600;
         int minute = number1 / 1440 % 60;
         int second = number1 % 60;
