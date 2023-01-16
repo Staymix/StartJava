@@ -78,20 +78,15 @@ public class VariablesTheme {
 
         System.out.println("\n6. Вывод символов и их кодов.\n");
         char lattice = '#';
-        int latticeInt = lattice;
-        System.out.println("Код символа " + latticeInt + " соответствует " + lattice);
+        System.out.println("Код символа " + (int) lattice + " соответствует " + lattice);
         char ampersand = '&';
-        int ampersandInt = ampersand;
-        System.out.println("Код символа " + ampersandInt + " соответствует " + ampersand);
+        System.out.println("Код символа " + (int) ampersand + " соответствует " + ampersand);
         char at = '@';
-        int atInt = at;
-        System.out.println("Код символа " + atInt + " соответствует " + at);
+        System.out.println("Код символа " + (int) at + " соответствует " + at);
         char caret = '^';
-        int caretInt = caret;
-        System.out.println("Код символа " + caretInt + " соответствует " + caret);
+        System.out.println("Код символа " + (int) caret + " соответствует " + caret);
         char underscore = '_';
-        int underscoreInt = underscore;
-        System.out.println("Код символа " + underscoreInt + " соответствует " + underscore);
+        System.out.println("Код символа " + (int) underscore + " соответствует " + underscore);
 
         System.out.println("\n7. Вывод в консоль ASCII-арт Дюка.\n");
         char slash = '/';
