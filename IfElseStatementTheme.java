@@ -41,32 +41,34 @@ public class IfElseStatementTheme {
 
         System.out.println("\n3. Проверка чисел.");
         System.out.println("\nЧисло " + num1 + ":");
-        if (num1 == 0) {
-            System.out.println("число равно нулю");
-        } else if (num1 % 2 == 0) {
-            System.out.println("\nявляется четным");
+        if (num1 != 0) {
+            if (num1 % 2 == 0) {
+                System.out.println("\nчетное");
+            } else {
+                System.out.println("\nне четное");
+            }
+            if (num1 > 0) {
+                System.out.println("\nположительное");
+            } else {
+                System.out.println("\nотрицательное");
+            }
         } else {
-            System.out.println("\nявляется не четным");
-        } if (num1 > 0) {
-            System.out.println("\nявляется положительным");
-        } else if (num1 < 0) {
-            System.out.println("\nявляется отрицательным");
+            System.out.println(num1 + " равно нулю");
         }
 
         System.out.println("\n4. Поиск одинаковых цифр в числах.");
-        num1 = 153;
-        num2 = 103;
+        num1 = 123;
+        num2 = 124;
         System.out.println("\nИсходные числа " + num1 + " и " + num2);
         if (num1 / 100 == num2 / 100) {
+            if (num1 % 100 / 10 == num2 % 100 / 10) {
+                if (num1 % 10 == num2 % 10) {
+                    System.out.println("Одинаковые числа в 1 разряде : " + num1 % 10);
+                }
+                System.out.println("Одинаковые числа во 2 разряде : " + num1 % 100 / 10);
+            }
             System.out.println("Одинаковые числа в 3 разряде : " + num1 / 100);
-        }
-        if (num1 % 100 / 10 == num2 % 100 / 10) {
-            System.out.println("Одинаковые числа во 2 разряде : " + num1 % 100 / 10);
-        }
-        if (num1 % 10 == num2 % 10) {
-            System.out.println("Одинаковые числа в 1 разряде : " + num1 % 10);
-        }
-        else {
+        } else {
             System.out.println ("Одинаковых чисел нет.");
         }
 
@@ -99,7 +101,6 @@ public class IfElseStatementTheme {
         int programmingPercent = 91;
         int histroryGrade = 5;
         int programmingGrade = 5;
-        int GradePointAverage = 0;
         if (histroryPercent <= 60) {
             histroryGrade = 2;
         } else if (histroryPercent > 60 && histroryPercent <= 73) {
@@ -135,41 +136,37 @@ public class IfElseStatementTheme {
         int billUSD100 = 10;
         int sumUSD = 567;
         int sumUSDHundred = sumUSD / 100;
-        int sumUSDtens = sumUSD / 10;
+        int sumUSDtens = sumUSD / 10 % 10;
         int sumUSDones = 0;
-        boolean isEnough = ((billUSD100 * 100) + (billUSD10 * 10) + billUSD1) < sumUSD;
-        if (isEnough) {
+        System.out.println("Требуемая сумма " + sumUSD + " USD");
+        if (((billUSD100 * 100) + (billUSD10 * 10) + billUSD1) >= sumUSD) {
+            if (sumUSDHundred <= billUSD100) {
+                sumUSD = sumUSD - (sumUSDHundred * 100);
+            } else {
+                sumUSD = sumUSD - (billUSD100 * 100);
+                sumUSDHundred = billUSD100;
+            }
+            if (sumUSDtens <= billUSD10) {
+                sumUSD = sumUSD - (sumUSDtens * 10);
+            } else {
+                sumUSDtens = billUSD10;
+                sumUSD = sumUSD - (billUSD10 * 10);
+            }
+            if (sumUSD <= billUSD1) {
+                sumUSDones = sumUSD;
+                sumUSD -= sumUSD;
+            } else {
+                sumUSD -= billUSD1;
+                sumUSDones = sumUSD;
+            }
+        } else { 
             System.out.println("Недостаточно банкнот.");
-        } else if(sumUSDHundred <= billUSD100 && sumUSDHundred > 0) {
-            sumUSD = sumUSD - (sumUSDHundred * 100);
-            billUSD100 = billUSD100 - sumUSDHundred;
-            System.out.println("Банкноты номиналом по 100 USD в количестве " + 
-                    sumUSDHundred + " шт ");
-        } else {
-            System.out.println("Банкноты номиналом по 100 USD в количестве " + billUSD100 + " шт");
-            sumUSD = sumUSD - (billUSD100 * 100);
-        }
-        if (sumUSDtens <= billUSD10 && !isEnough) {
-            billUSD10 = billUSD10 - sumUSDtens;
-            System.out.println("Банкноты номиналом по 10 USD в количестве " + sumUSDtens + " шт");
-            sumUSD = sumUSD - (sumUSDtens * 10);
-        } else if (!isEnough) {
-            sumUSDtens = sumUSDtens - (sumUSDtens - billUSD10);
-            System.out.println("Банкноты номиналом по 10 USD в количестве " + billUSD10 + " шт");
-            sumUSD = sumUSD - (billUSD10 * 10);
-        }
-        if (sumUSD <= billUSD1 && !isEnough) {
-            billUSD1 = billUSD1 - sumUSD;
-            System.out.println("Банкноты номиналом по 1 USD в количестве " + sumUSD + " шт");
-            sumUSDones = sumUSD;
-            sumUSD -= sumUSD;
-        } else if (!isEnough) {
-            sumUSD -= billUSD1;
-            System.out.println("Банкноты номиналом по 1 USD в количестве " + billUSD1 + " шт");
         }
         if (sumUSD == 0) {
-            System.out.println("Купюры выданы на общую сумму " + (sumUSDones + ((sumUSDtens * 10) + 
-                    (sumUSDHundred * 100))) + " USD");
+            System.out.println("Номинал банкнот 100 USD " + sumUSDHundred + 
+                    "шт.\nНоминал банкнот 10 USD " + sumUSDtens + "шт.\nНоминал банкнот 1 USD " + 
+                    sumUSDones + "шт.\nКупюры выданы на общую сумму " + (sumUSDones + 
+                    ((sumUSDtens * 10) + (sumUSDHundred * 100))) + " USD");
         } else {
             System.out.println("Произошла ошибка");
         }
