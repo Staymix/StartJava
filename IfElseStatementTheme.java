@@ -40,7 +40,7 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n3. Проверка чисел.");
-        System.out.println("\nЧисло " + num1 + " являтется:");
+        System.out.println("\nЧисло " + num1 + " является:");
         if (num1 != 0) {
             if (num1 % 2 == 0) {
                 System.out.println("четным");
@@ -59,18 +59,18 @@ public class IfElseStatementTheme {
         System.out.println("\n4. Поиск одинаковых цифр в числах.");
         num1 = 123;
         num2 = 124;
-        boolean equalInNumbersHundread = num1 / 100 == num2 / 100;
-        boolean equalInNumbersTens = num1 / 10 % 10 == num2 / 10 % 10;
-        boolean equalInNumbersOnes = num1 % 10 == num2 % 10;
+        boolean equalHundread = num1 / 100 == num2 / 100;
+        boolean equalTens = num1 / 10 % 10 == num2 / 10 % 10;
+        boolean equalOnes = num1 % 10 == num2 % 10;
         System.out.println("\nИсходные числа " + num1 + " и " + num2);
-        if (equalInNumbersHundread | equalInNumbersTens | equalInNumbersOnes) {
-            if (equalInNumbersHundread) {
+        if (equalHundread || equalTens || equalOnes) {
+            if (equalHundread) {
                 System.out.println("Одинаковые цифры в 3 разряде : " + num1 / 100);
             }
-            if (equalInNumbersTens) {
+            if (equalTens) {
                 System.out.println("Одинаковые цифры во 2 разряде : " + num1 % 100 / 10);
             }
-            if (equalInNumbersOnes) {
+            if (equalOnes) {
                 System.out.println("Одинаковые цифры в 1 разряде : " + num1 % 10);
             }
         } else {
