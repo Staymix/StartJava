@@ -1,104 +1,91 @@
 public class CyclesTheme {
-    public static void main(String[] args){
-
+    public static void main(String[] args) {
         System.out.println("1. Подсчет суммы четных и нечетных чисел");
-        int numberMin = -10;
-        int numberMax = 21;
+        int startRange = -10;
+        int endRange = 21;
         int sumEven = 0;
         int sumOdd = 0;
-        int number = numberMin;
+        int counter = startRange;
         do {
-            if (number % 2 == 0) {
-                sumEven += number;
+            if (counter % 2 == 0) {
+                sumEven += counter;
             } else {
-                sumOdd += number;
-            } number++;
-        } while (number <= numberMax);
-        System.out.println("в промежутке [" + numberMin + ", " + numberMax + 
+                sumOdd += counter;
+            } counter++;
+        } while (counter <= endRange);
+        System.out.println("в промежутке [" + startRange + ", " + endRange + 
                 "] сумма четных чисел = " + sumEven + ", а нечетных = " + sumOdd);
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
         int number1 = 10;
         int number2 = 5;
         int number3 = -1;
-        numberMax = 0;
-        numberMin = 0;
-        if (number1 > number2 && number1 > number3) {
-            numberMax = number1;
-            if (number2 < number3) {
-                numberMin = number2;
-            } else {
-                numberMin = number3;
-            }
-        } else if (number2 > number1 && number2 > number3) {
-            numberMax = number2;
-            if (number1 < number3) {
-                numberMin = number1;
-            } else {
-                numberMin = number3;
-            }
+        int max = 0;
+        int min = 0;
+        if (number1 > number3 && number2 > number1) {
+            max = number2;
+            min = number3;
+        } else if (number1 > number3 && number3 > number2) {
+            max = number1;
+            min = number2;
+        } else if (number1 > number3 && number2 > number3) {
+            max = number1;
+            min = number3;
+        } else if (number2 > number3 && number3 > number1) {
+            max = number2;
+            min = number1;
+        } else if (number3 > number2 && number2 > number1) {
+            max = number3;
+            min = number1;
         } else {
-            numberMax = number3;
-            if (number1 < number2) {
-                numberMin = number1;
-            } else {
-                numberMin = number2;
-            }
+            max = number3;
+            min = number2;
         }
-        for (numberMax--; numberMax > numberMin; numberMax--) {
-            System.out.print(numberMax + " ");
+        for (max--; max > min; max--) {
+            System.out.print(max + " ");
         }
 
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
         number1 = 1234;
-        int sumNum = 0;
-        int num = 0;
+        int sumDigits = 0;
         while (number1 > 0) {
-            num = number1 % 10;
-            sumNum += num;
+            int digit = number1 % 10;
+            sumDigits += digit;
             number1 /= 10;
-            System.out.print(num);
+            System.out.print(digit);
         }
-        System.out.println("\n" + sumNum);
+        System.out.println("\n" + sumDigits);
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        number = 0;
+        int number = 0;
         for (int i = 1; i < 24; i += 2) {
             if (number % 5 == 0) {
                 System.out.println();
             }
-            if (numberMin < 10) {
-                System.out.printf("%2d", i);
-                System.out.print(" ");
-            } else {
-                System.out.printf("%2d", i);
-            }
+            System.out.printf("%2d%s", i, " ");
             number++;
         }
-        for (;number % 5 > 0 ; number++) {
-                System.out.printf("%2d", 0);
-                System.out.print(" ");
+        for (; number % 5 > 0; number++) {
+            System.out.printf("%2d%s", 0, " ");
         }
 
         System.out.println("\n\n5. Проверка количества двоек на четность/нечетность");
         number1 = 3242592;
-        int  theRemainderOfDividing = 0;
-        int sum2 = 0;
-        String even;
+        int countTwos = 0;
         System.out.print("Число " + number1 + " содержит ");
         while (number1 > 0) {
-            theRemainderOfDividing = number1 % 10;
+            int digit = 0;
+            digit = number1 % 10;
             number1 /= 10;
-            if (theRemainderOfDividing == 2) {
-                sum2++;
+            if (digit == 2) {
+                countTwos++;
             }
         }
-        if (sum2 % 2 == 0) {
+        String even = "не четное";
+        if (countTwos % 2 == 0) {
             even = " (четное)";
-        } else {
-            even = " (не четное)";
         }
-        System.out.println(sum2 + even + " количество двоек.");
+        System.out.println(countTwos + even + " количество двоек.");
 
         System.out.println("\n6. Отображение фигур в консоли");
         char asterisk = '*';
