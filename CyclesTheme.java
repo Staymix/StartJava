@@ -22,24 +22,19 @@ public class CyclesTheme {
         int number3 = -1;
         int max = 0;
         int min = 0;
-        if (number1 > number3 && number2 > number1) {
-            max = number2;
-            min = number3;
-        } else if (number1 > number3 && number3 > number2) {
+        if (number1 > number2) {
             max = number1;
-            min = number2;
-        } else if (number1 > number3 && number2 > number3) {
-            max = number1;
-            min = number3;
-        } else if (number2 > number3 && number3 > number1) {
-            max = number2;
-            min = number1;
-        } else if (number3 > number2 && number2 > number1) {
-            max = number3;
-            min = number1;
         } else {
+            max = number2;
+        } if (max < number3) {
             max = number3;
+        }
+        if (number1 > number2) {
             min = number2;
+        } else {
+            min = number1;
+        } if (min > number3) {
+            min = number3;
         }
         for (max--; max > min; max--) {
             System.out.print(max + " ");
@@ -57,15 +52,15 @@ public class CyclesTheme {
         System.out.println("\n" + sumDigits);
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        int number = 0;
+        counter = 0;
         for (int i = 1; i < 24; i += 2) {
-            if (number % 5 == 0) {
+            if (counter % 5 == 0) {
                 System.out.println();
             }
             System.out.printf("%2d%s", i, " ");
-            number++;
+            counter++;
         }
-        for (; number % 5 > 0; number++) {
+        for (; counter % 5 > 0; counter++) {
             System.out.printf("%2d%s", 0, " ");
         }
 
@@ -74,8 +69,7 @@ public class CyclesTheme {
         int countTwos = 0;
         System.out.print("Число " + number1 + " содержит ");
         while (number1 > 0) {
-            int digit = 0;
-            digit = number1 % 10;
+            int digit = number1 % 10;
             number1 /= 10;
             if (digit == 2) {
                 countTwos++;
@@ -89,102 +83,94 @@ public class CyclesTheme {
 
         System.out.println("\n6. Отображение фигур в консоли");
         char asterisk = '*';
-        char hash = '#';
-        char dollarSign = '$';
-        for (int x = 0; x < 5; x++) {
-            for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
+            for(int j = 0; j < 10; j++) {
                 System.out.print(asterisk);
             }
             System.out.println();
         }
-        int i = 0;
-        while(i < 5) {
+
+        counter = 0;
+        char hash = '#';
+        while(counter < 5) {
             int j = 5;
-            while(j > i) {
+            while(j > counter) {
                 System.out.print(hash);
                 j--;
             }
             System.out.println();
-            i++;
+            counter++;
         }
 
-        // не могу решить эту задачу только с помощью цикла do while.
-        // направь пожалуйста на верное решение
-        number1 = 0;
+        counter = 5;
+        char dollarSign = '$';
         do {
-            if (number1 == 0 || number1 == 4) {
-                System.out.print(dollarSign);
-            } else if (number1 == 1 || number1 == 3) {
+            System.out.print(dollarSign);
+            if (counter == 3) {
                 System.out.print(dollarSign + "" + dollarSign);
-            } else if (number1 == 2) {
-                System.out.print(dollarSign + "" + dollarSign + "" + dollarSign);
+            } else if (counter % 2 == 0) {
+                System.out.print(dollarSign);
             }
-            ++number1;
             System.out.println();
-            i--;
-        } while(i > 0);
+            counter--;
+        } while(counter > 0);
 
         System.out.println("\n7. Отображение ASCII-символов.");
         System.out.println("Dec  Char");
-        int code = 0;
         for (char symbol = 0; symbol < 255; symbol++) {
-            code = (int) symbol;
-            if (symbol % 2 == 0 && symbol > 0 && symbol < 48) {
-                System.out.printf("%3d", code);
-                System.out.printf("%6c", symbol);
-                System.out.println();
+            if (symbol > 0 && symbol < 48 && symbol % 2 == 0) {
+                System.out.printf("%3d%6c%s", (int) symbol, symbol, "\n");
             } else if (symbol > 96 && symbol < 123) {
-                System.out.printf("%3d", code);
-                System.out.printf("%6c", symbol);
-                System.out.println();
+                System.out.printf("%3d%6c%s", (int) symbol, symbol, "\n");
             }
         }
 
         System.out.println("\n8. Проверка, является ли число палиндромом");
-        number = 1234321;
-        int r = number;
-        int rev = 0;
-        while(r > 0) {
-            number1 = r % 10;
-            rev = rev * 10 + number1;
-            r /= 10;
+        int number = 1234321;
+        int copyNumber = number;
+        int revers = 0;
+        while(copyNumber > 0) {
+            number1 = copyNumber % 10;
+            revers = revers * 10 + number1;
+            copyNumber /= 10;
         }
-        if (rev == number) {
+        if (revers == number) {
             System.out.println("Число " + number + " является палиндромом.");
         } else {
             System.out.println("Число " + number + " не является палиндромом.");
         }
 
         System.out.println("\n9. Определение, является ли число счастливым");
-        number = 659965;
-        r = number;
-        int revRight = 0;
-        int revLeft = 0;
-        int sumRight = 0;
-        int sumLeft = 0;
-        for (i = 0; i < 3; i++) {
-            number1 = r % 10;
-            r /= 10;
-            sumRight += number1;
-            revRight = revRight * 10 + number1;
+        number = 654321;
+        copyNumber = number;
+        int digitsRight = 0;
+        int digitsLeft = 0;
+        int sumDigitsRight = 0;
+        int sumDigitsLeft = 0;
+        int remainderOfDivision;
+        for (int i = 0; i < 6; i++) {
+            if (i < 3) {
+                remainderOfDivision = copyNumber % 10;
+                copyNumber /= 10;
+                sumDigitsRight += remainderOfDivision;
+                digitsRight = digitsRight * 10 + remainderOfDivision;
+            } else {
+                remainderOfDivision = copyNumber % 10;
+                copyNumber /= 10;
+                sumDigitsLeft += remainderOfDivision;
+                digitsLeft = digitsLeft * 10 + remainderOfDivision;
+            }
         }
-        r = number / 1000;
-        for (i = 0; i < 3; i++) {
-            number1 = r % 10;
-            r /= 10;
-            sumLeft += number1;
-            revLeft = revLeft * 10 + number1;
-        }
-        if (sumLeft == sumRight) {
-            System.out.println("Сумма цифр \n" + revLeft + " = " + sumLeft + 
-                    "\n" + revRight + " = " + sumRight + "\nЧисло счастливое");
+        if (sumDigitsLeft == sumDigitsRight) {
+            System.out.println("Сумма цифр \n" + digitsLeft + " = " + sumDigitsLeft + 
+                    "\n" + digitsRight + " = " + sumDigitsRight + "\nЧисло счастливое");
         } else {
-            System.out.println("Сумма цифр \n" + revLeft + " = " + sumLeft + 
-                    "\n" + revRight + " = " + sumRight + "\nЧисло не является счастливым");
+            System.out.println("Сумма цифр \n" + digitsLeft + " = " + sumDigitsLeft + 
+                    "\n" + digitsRight + " = " + sumDigitsRight + "\nЧисло не является счастливым");
         }
 
         System.out.println("\n10. Вывод таблицы умножения Пифогора.");
-        for(i = 1; i <= 9; i++) {
+        for(int i = 1; i <= 9; i++) {
             if (i == 1) {
                 System.out.printf("%2s", "|");
             } else {
