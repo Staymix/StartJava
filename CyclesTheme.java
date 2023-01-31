@@ -17,23 +17,21 @@ public class CyclesTheme {
                 "] сумма четных чисел = " + sumEven + ", а нечетных = " + sumOdd);
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
-        int number1 = 10;
-        int number2 = 5;
-        int number3 = -1;
-        int max = 0;
-        int min = 0;
-        if (number1 > number2) {
-            max = number1;
-        } else {
+        int number1 = -1;
+        int number2 = 10;
+        int number3 = 5;
+        int max = number1;
+        int min = number1;
+        if (number2 > max) {
             max = number2;
-        } if (max < number3) {
+        }
+        if (number3 > max) {
             max = number3;
         }
-        if (number1 > number2) {
+        if (number2 < min) {
             min = number2;
-        } else {
-            min = number1;
-        } if (min > number3) {
+        }
+        if (number3 < min) {
             min = number3;
         }
         for (max--; max > min; max--) {
@@ -75,41 +73,38 @@ public class CyclesTheme {
                 countTwos++;
             }
         }
-        String even = "не четное";
+        String even = " (не четное)";
         if (countTwos % 2 == 0) {
             even = " (четное)";
         }
         System.out.println(countTwos + even + " количество двоек.");
 
         System.out.println("\n6. Отображение фигур в консоли");
-        char asterisk = '*';
         for (int i = 0; i < 5; i++) {
             for(int j = 0; j < 10; j++) {
-                System.out.print(asterisk);
+                System.out.print('*');
             }
             System.out.println();
         }
 
         counter = 0;
-        char hash = '#';
         while(counter < 5) {
-            int j = 5;
-            while(j > counter) {
-                System.out.print(hash);
-                j--;
+            int triangleWidth = 5;
+            while(triangleWidth > counter) {
+                System.out.print('#');
+                triangleWidth--;
             }
             System.out.println();
             counter++;
         }
 
         counter = 5;
-        char dollarSign = '$';
         do {
-            System.out.print(dollarSign);
+            System.out.print('$');
             if (counter == 3) {
-                System.out.print(dollarSign + "" + dollarSign);
+                System.out.print('$' + "" + '$');
             } else if (counter % 2 == 0) {
-                System.out.print(dollarSign);
+                System.out.print('$');
             }
             System.out.println();
             counter--;
@@ -118,10 +113,10 @@ public class CyclesTheme {
         System.out.println("\n7. Отображение ASCII-символов.");
         System.out.println("Dec  Char");
         for (char symbol = 0; symbol < 255; symbol++) {
-            if (symbol > 0 && symbol < 48 && symbol % 2 == 0) {
-                System.out.printf("%3d%6c%s", (int) symbol, symbol, "\n");
-            } else if (symbol > 96 && symbol < 123) {
-                System.out.printf("%3d%6c%s", (int) symbol, symbol, "\n");
+            if (symbol > 0 && symbol < 48 && symbol % 2 != 0) {
+                System.out.printf("%3d%6c%n", (int) symbol, symbol);
+            } else if (symbol > 96 && symbol < 123 && symbol % 2 == 0) {
+                System.out.printf("%3d%6c%n", (int) symbol, symbol);
             }
         }
 
@@ -130,8 +125,8 @@ public class CyclesTheme {
         int copyNumber = number;
         int revers = 0;
         while(copyNumber > 0) {
-            number1 = copyNumber % 10;
-            revers = revers * 10 + number1;
+            int digit = copyNumber % 10;
+            revers = revers * 10 + digit;
             copyNumber /= 10;
         }
         if (revers == number) {
@@ -141,35 +136,29 @@ public class CyclesTheme {
         }
 
         System.out.println("\n9. Определение, является ли число счастливым");
-        number = 654321;
+        number = 123456;
         copyNumber = number;
-        int digitsRight = 0;
-        int digitsLeft = 0;
         int sumDigitsRight = 0;
         int sumDigitsLeft = 0;
         int remainderOfDivision;
         for (int i = 0; i < 6; i++) {
+            remainderOfDivision = copyNumber % 10;
+            copyNumber /= 10;
             if (i < 3) {
-                remainderOfDivision = copyNumber % 10;
-                copyNumber /= 10;
                 sumDigitsRight += remainderOfDivision;
-                digitsRight = digitsRight * 10 + remainderOfDivision;
             } else {
-                remainderOfDivision = copyNumber % 10;
-                copyNumber /= 10;
                 sumDigitsLeft += remainderOfDivision;
-                digitsLeft = digitsLeft * 10 + remainderOfDivision;
             }
         }
+        System.out.println("Сумма цифр \n" + (number / 1000) + " = " + sumDigitsLeft + 
+                    "\n" + (number % 1000) + " = " + sumDigitsRight);
         if (sumDigitsLeft == sumDigitsRight) {
-            System.out.println("Сумма цифр \n" + digitsLeft + " = " + sumDigitsLeft + 
-                    "\n" + digitsRight + " = " + sumDigitsRight + "\nЧисло счастливое");
+             System.out.println("Число счастливое");
         } else {
-            System.out.println("Сумма цифр \n" + digitsLeft + " = " + sumDigitsLeft + 
-                    "\n" + digitsRight + " = " + sumDigitsRight + "\nЧисло не является счастливым");
+            System.out.println("Число не является счастливым");
         }
 
-        System.out.println("\n10. Вывод таблицы умножения Пифогора.");
+        System.out.println("\n10. Вывод таблицы умножения Пифагора.");
         for(int i = 1; i <= 9; i++) {
             if (i == 1) {
                 System.out.printf("%2s", "|");
@@ -181,7 +170,7 @@ public class CyclesTheme {
             }
             if (i == 1) {
                 System.out.println();
-                for (int k = 1; k <= 9; k++) {
+                for (int j = 1; j <= 9; j++) {
                     System.out.print("___");
                 }
             }
