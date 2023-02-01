@@ -87,28 +87,28 @@ public class CyclesTheme {
             System.out.println();
         }
 
-        counter = 0;
-        while(counter < 5) {
-            int triangleWidth = 5;
-            while(triangleWidth > counter) {
+        int lineCounter = 0;
+        while(lineCounter < 5) {
+            int numberOfColumns = 5;
+            while(numberOfColumns > lineCounter) {
                 System.out.print('#');
-                triangleWidth--;
+                numberOfColumns--;
             }
             System.out.println();
-            counter++;
+            lineCounter++;
         }
 
-        counter = 5;
+        lineCounter = 5;
         do {
             System.out.print('$');
-            if (counter == 3) {
+            if (lineCounter == 3) {
                 System.out.print('$' + "" + '$');
-            } else if (counter % 2 == 0) {
+            } else if (lineCounter % 2 == 0) {
                 System.out.print('$');
             }
             System.out.println();
-            counter--;
-        } while(counter > 0);
+            lineCounter--;
+        } while(lineCounter > 0);
 
         System.out.println("\n7. Отображение ASCII-символов.");
         System.out.println("Dec  Char");
@@ -140,14 +140,13 @@ public class CyclesTheme {
         copyNumber = number;
         int sumDigitsRight = 0;
         int sumDigitsLeft = 0;
-        int remainderOfDivision;
         for (int i = 0; i < 6; i++) {
-            remainderOfDivision = copyNumber % 10;
+            int digit = copyNumber % 10;
             copyNumber /= 10;
             if (i < 3) {
-                sumDigitsRight += remainderOfDivision;
+                sumDigitsRight += digit;
             } else {
-                sumDigitsLeft += remainderOfDivision;
+                sumDigitsLeft += digit;
             }
         }
         System.out.println("Сумма цифр \n" + (number / 1000) + " = " + sumDigitsLeft + 
