@@ -1,25 +1,25 @@
 public class Calculator {
     public static void main(String[] args) {
-        int numberOne = 1236;
-        int numberTwo = 78;
+        int number1 = 52;
+        int number2 = 9;
         int result = 0;
         char sign = '^';
         if (sign == '*') {
-            result = numberOne * numberTwo;
+            result = number1 * number2;
         } else if (sign == '+') {
-            result = numberOne + numberTwo;
+            result = number1 + number2;
         } else if (sign == '-') {
-            result = numberOne - numberTwo;
+            result = number1 - number2;
         } else if (sign == '/') {
-            result = numberOne / numberTwo;
+            result = number1 / number2;
         } else if (sign == '^') {
-            for (int i = numberTwo; i > 0; i--) {
-                int counter = numberOne * numberOne;
-                result += counter;
+            result = 1;
+            for (int i = 0; i < number2; i++) {
+                result *= number1;
             }
         } else if (sign == '%') {
-            result = (numberOne / 100) * numberTwo;
+            result = number1 % number2;
         }
-        System.out.println(numberOne + " " + sign + " " + numberTwo + " = " + result);
+        System.out.println(number1 + " " + sign + " " + number2 + " = " + result);
     }
 }
