@@ -13,12 +13,13 @@ public class CalculatorTest {
             calculator.setSign(scanner.next().charAt(0));
             System.out.println("Введите второе число: ");
             calculator.setNumber2(scanner.nextInt());
-            calculator.doComputing();
+            calculator.calculate();
             scanner.nextLine();
             do {
                 System.out.println("\nХотите продолжить вычисления?[yes/no] :");
                 answer = scanner.nextLine();
-            } while(!"no".equalsIgnoreCase(answer) & !"yes".equalsIgnoreCase(answer));
-        } while (!"no".equalsIgnoreCase(answer));
+                answer = answer.toLowerCase();
+            } while(!"no".equals(answer) & !"yes".equals(answer));
+        } while (!"no".equals(answer));
     }
 }
