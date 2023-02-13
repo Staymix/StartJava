@@ -4,6 +4,9 @@ public class GuessNumber {
     private int targetNumber;
     private Player player1;
     private Player player2;
+    private int numberPlayer;
+    private String namePlayer;
+    private boolean right = false;
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
@@ -17,41 +20,35 @@ public class GuessNumber {
     }
 
     public void startgame() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Игрок " + player1.getName() + " введите ваше число.");
-        player1.setNumber(scanner.nextInt());
-        if (player1.getNumber() == targetNumber) {
-            System.out.println("Игрок " + player1.getName() + " выиграл, это число: " + 
-                    player1.getNumber());
-        }
-        if (player1.getNumber() != targetNumber) {
-            System.out.println("Игрок " + player2.getName() + " введите ваше число.");
-            player2.setNumber(scanner.nextInt());
-            if (player2.getNumber() == targetNumber) {
-                System.out.println("Игрок " + player2.getName() + " выиграл, это число: " +
-                        player2.getNumber());
+        do {
+            Scanner scanner = new Scanner(System.in);
+            namePlayer = player1.getName();
+            System.out.println("Игрок " + namePlayer + " введите ваше число.");
+            player1.setNumber(scanner.nextInt());
+            numberPlayer = player1.getNumber();
+            isGuessed();
+            if (right) {
+                break;
             }
-        }
-        cheking();
+            namePlayer = player2.getName();
+            System.out.println("Игрок " + namePlayer + " введите ваше число.");
+            player2.setNumber(scanner.nextInt());
+            numberPlayer = player2.getNumber();
+            isGuessed();
+        } while (!right);
     }
 
-    private void cheking() {
-        while(player1.getNumber() != targetNumber && player2.getNumber() != targetNumber) {
-            if (player1.getNumber() > targetNumber) {
-                System.out.println("Число " + player1.getNumber() + " игрока " + player1.getName() +
+    private boolean isGuessed() {
+        if (numberPlayer == targetNumber) {
+            System.out.println("Игрок " + namePlayer + " выиграл, это число: " + targetNumber);
+            right = true;
+        } else if (numberPlayer > targetNumber) {
+                System.out.println("Число " + numberPlayer + " игрока " + namePlayer +
                         " больше того, что загадал компьютер!");
-            } else {
-                System.out.println("Число " + player1.getNumber() + " игрока " + player1.getName() +
+        } else {
+                System.out.println("Число " + numberPlayer + " игрока " + namePlayer +
                         " меньше того, что загадал компьютер!");
-            }
-            if (player2.getNumber() > targetNumber) {
-                System.out.println("Число " + player2.getNumber() + " игрока " + player2.getName() +
-                        " больше того, что загадал компьютер!");
-            } else {
-                System.out.println("Число " + player2.getNumber() + " игрока " + player2.getName() +
-                        " меньше того, что загадал компьютер!");
-            }
-            startgame();
         }
+        return right;
     }
 }
