@@ -41,7 +41,7 @@ public class ArrayTheme {
         for (int i = 0; i < length; i++) {
             floatArr[i] = (float) Math.random();
         }
-        System.out.println("Исходный массив: ");
+        System.out.println("Исходный массив:");
         for (int i = 0; i < length; i++) {
             System.out.printf("%.3f%s", floatArr[i], " ");
             if (i == 7) {
@@ -49,7 +49,7 @@ public class ArrayTheme {
             }
         }
         float numMiddle = floatArr[length / 2];
-        System.out.println("\nИзминенный массив: ");
+        System.out.println("\nИзминенный массив:");
         int counter = 0;
         for (int i = 0; i < length; i++) {
             if (floatArr[i] > numMiddle) {
