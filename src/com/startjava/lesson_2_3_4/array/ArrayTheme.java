@@ -1,16 +1,14 @@
 package com.startjava.lesson_2_3_4.array;
 
-import java.sql.SQLOutput;
-
 public class ArrayTheme {
     public static void main(String[] args) {
         System.out.println("1. Реверс значений массива.");
         int[] intArr = {2, 6, 3, 7, 1, 4, 5};
-       displayArray(intArr);
+        displayArray(intArr);
         int length = intArr.length;
         for (int i = 0; i < length--; i++) {
             int num = intArr[i];
-            intArr [i] = intArr[length];
+            intArr[i] = intArr[length];
             intArr[length] = num;
         }
         displayArray(intArr);
@@ -24,7 +22,7 @@ public class ArrayTheme {
         int product = 1;
         for (int i = 1; i < length - 1; i++) {
             product *= intArr2[i];
-            System.out.print(intArr2[i] < length - 2 ? intArr2[i] + " * " : intArr2[i] + " = " + product);
+            System.out.print((intArr2[i]) + (intArr2[i] < length - 2 ? " * " : " = " + product));
         }
         System.out.println("\n" + intArr2[0] + " " + intArr2[9]);
 
@@ -35,12 +33,7 @@ public class ArrayTheme {
             floatArr[i] = (float) Math.random();
         }
         System.out.println("Исходный массив:");
-        for (int i = 0; i < length; i++) {
-            System.out.printf("%.3f%s", floatArr[i], " ");
-            if (i == 7) {
-                System.out.println();
-            }
-        }
+        displayArrayFloat(floatArr);
         float middleCellValue = floatArr[length / 2];
         System.out.println("\nИзмененный массив:");
         int countCells = 0;
@@ -49,35 +42,32 @@ public class ArrayTheme {
                 floatArr[i] = 0f;
                 countCells++;
             }
-            System.out.printf("%.3f%s", floatArr[i], " ");
-            if (i == 7) {
-                System.out.println();
-            }
         }
+        displayArrayFloat(floatArr);
         System.out.println("\nКоличество обнуленных ячеек: " + countCells);
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке.");
-        char[] capitalLetters  = new char[26];
-        length = capitalLetters.length;
+        char[] alphabet  = new char[26];
+        length = alphabet.length;
         for (int i = 0; i < length; i++) {
-            capitalLetters[i] = (char) ('A' + i);
+            alphabet[i] = (char) ('A' + i);
         }
         for (int i = length - 1; i >= 0; i--) {
             for (int j = length - 1; j >= i; j--) {
-                System.out.print(capitalLetters[j]);
+                System.out.print(alphabet[j]);
             }
             System.out.println();
         }
 
         System.out.println("\n5. Генерация уникальных чисел.");
-        int[] intArr3 = new int[30];
-        length = intArr3.length;
+        int[] uniqueNumbers = new int[30];
+        length = uniqueNumbers.length;
         for (int i = 0; i < length; i++) {
-            intArr3[i] = (int) (60 + Math.random() * 40);
+            uniqueNumbers[i] = (int) (60 + Math.random() * 40);
             for (int j = 0; j < i; j++) {
-                while (intArr3[j] == intArr3[i]) {
-                    intArr3[i] = (int) (60 + Math.random() * 40);
-                    j = 0;
+                if (uniqueNumbers[j] == uniqueNumbers[i]) {
+                    i -= 1;
+                    break;
                 }
             }
         }
@@ -85,11 +75,11 @@ public class ArrayTheme {
         while(!isSorted) {
             isSorted = true;
             for (int i = 0; i < length - 1; i++) {
-                if (intArr3[i] > intArr3[i + 1]) {
+                if (uniqueNumbers[i] > uniqueNumbers[i + 1]) {
                     isSorted = false;
-                    int num = intArr3[i];
-                    intArr3[i] = intArr3[i + 1];
-                    intArr3[i + 1] = num;
+                    int num = uniqueNumbers[i];
+                    uniqueNumbers[i] = uniqueNumbers[i + 1];
+                    uniqueNumbers[i + 1] = num;
                 }
             }
         }
@@ -97,31 +87,31 @@ public class ArrayTheme {
             if ((i % 10) == 0) {
                 System.out.println();
             }
-            System.out.print(intArr3[i] + " ");
+            System.out.print(uniqueNumbers[i] + " ");
         }
 
         System.out.println("\n\n6. Сдвиг элементов массива.");
-        String[] strArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        String[] srcStrings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
         countCells = 0;
-        length = strArr.length;
+        length = srcStrings.length;
         for (int i = 0; i < length; i++) {
-            if (strArr[i].isEmpty() || strArr[i].contains(" ")) {
+            if (srcStrings[i].isEmpty() || srcStrings[i].contains(" ")) {
                 countCells++;
             }
         }
-        ArrayTheme.foreachStr(strArr);
-        String[] strArrCopy = new String[length - countCells];
+        displayArrayStr(srcStrings);
+        String[] destStrings = new String[length - countCells];
         countCells = 0;
         int num = 0;
         for (int i = 0; i < length; i++) {
             num = i;
-            if (strArr[i].isEmpty() || strArr[i].contains(" ")) {
+            if (srcStrings[i].isBlank()) {
                 countCells++;
             } else {
-                System.arraycopy(strArr, num, strArrCopy, num - countCells, 1);
+                System.arraycopy(srcStrings, num, destStrings, num - countCells, 1);
             }
         }
-        ArrayTheme.foreachStr(strArrCopy);
+        displayArrayStr(destStrings);
     }
 
     private static void displayArray (int[] arr) {
@@ -131,10 +121,19 @@ public class ArrayTheme {
         System.out.println();
     }
 
-    private static void foreachStr (String[] arr) {
+    private static void displayArrayStr (String[] arr) {
         for (String str: arr) {
             System.out.print(str + " ");
         }
         System.out.println();
+    }
+
+    private  static void displayArrayFloat (float[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf("%.3f%s", arr[i], " ");
+            if (i == 7) {
+                System.out.println();
+            }
+        }
     }
 }
