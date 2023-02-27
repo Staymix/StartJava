@@ -22,7 +22,7 @@ public class ArrayTheme {
         int product = 1;
         for (int i = 1; i < length - 1; i++) {
             product *= intArr2[i];
-            System.out.print((intArr2[i]) + (intArr2[i] < length - 2 ? " * " : " = " + product));
+            System.out.print(intArr2[i] + (intArr2[i] < length - 2 ? " * " : " = " + product));
         }
         System.out.println("\n" + intArr2[0] + " " + intArr2[9]);
 
@@ -63,12 +63,20 @@ public class ArrayTheme {
         int[] uniqueNumbers = new int[30];
         length = uniqueNumbers.length;
         for (int i = 0; i < length; i++) {
-            uniqueNumbers[i] = (int) (60 + Math.random() * 40);
-            for (int j = 0; j < i; j++) {
-                if (uniqueNumbers[j] == uniqueNumbers[i]) {
-                    i -= 1;
+            boolean uniqueNumber = true;
+            int randomNumber = (int) (60 + Math.random() * 40);
+            for (int j = 0; j <= i; j++) {
+                if (j == i) {
+                    continue;
+                }
+                if (uniqueNumbers[j] == randomNumber) {
+                    i--;
+                    uniqueNumber = false;
                     break;
                 }
+            }
+            if (uniqueNumber) {
+                uniqueNumbers[i] = randomNumber;
             }
         }
         boolean isSorted = false;
@@ -92,25 +100,30 @@ public class ArrayTheme {
 
         System.out.println("\n\n6. Сдвиг элементов массива.");
         String[] srcStrings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
-        countCells = 0;
+        int countEmptyStrings = 0;
         length = srcStrings.length;
-        for (int i = 0; i < length; i++) {
-            if (srcStrings[i].isEmpty() || srcStrings[i].contains(" ")) {
-                countCells++;
+        for (String str: srcStrings) {
+            if (str.isBlank()) {
+                countEmptyStrings++;
             }
         }
         displayArrayStr(srcStrings);
-        String[] destStrings = new String[length - countCells];
-        countCells = 0;
-        int num = 0;
+        String[] destStrings = new String[length - countEmptyStrings];
+        countEmptyStrings = 0;
+        int countStrings = 0;
         for (int i = 0; i < length; i++) {
-            num = i;
             if (srcStrings[i].isBlank()) {
-                countCells++;
+                countEmptyStrings++;
+                if (countStrings > 0) {
+                    System.arraycopy(srcStrings, i - countStrings, destStrings,
+                            i - countEmptyStrings - countStrings + 1, countStrings);
+                    countStrings = 0;
+                }
             } else {
-                System.arraycopy(srcStrings, num, destStrings, num - countCells, 1);
+                countStrings++;
             }
         }
+
         displayArrayStr(destStrings);
     }
 
