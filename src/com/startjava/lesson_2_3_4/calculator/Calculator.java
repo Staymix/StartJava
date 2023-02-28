@@ -1,24 +1,28 @@
 package com.startjava.lesson_2_3_4.calculator;
 
+import java.util.Arrays;
+
 public class Calculator {
-    private int number1;
-    private int number2;
+    private double number1;
+    private double number2;
     private char sign;
+    private  String  mathematicalExpression;
+    private String[] data = new String[3];
+    private double result;
 
-    public void setNumber1(int number1) {
-        this.number1 = number1;
+    public void setMathematicalExpression(String mathematicalExpression) {
+        this.mathematicalExpression = mathematicalExpression;
+        data = mathematicalExpression.split(" ");
+        number1 = Integer.parseInt(data[0]);
+        sign = data[1].charAt(0);
+        number2 = Integer.parseInt(data[2]);
     }
 
-    public void setNumber2(int number2) {
-        this.number2 = number2;
-    }
-
-    public void setSign(char sign) {
-        this.sign = sign;
+    public double getResult() {
+        return result;
     }
 
     public void calculate() {
-        int result = 0;
         switch(sign) {
             case '*' :
                 result = number1 * number2;
@@ -33,14 +37,11 @@ public class Calculator {
                 result = number1 / number2;
                 break;
             case '^' :
-                result = 1;
-                for (int i = 0; i < number2; i++) {
-                    result *= number1;
-                }
+                result = (int) Math.pow(number1, number2);
                 break;
             case '%' :
                 result = number1 % number2;
         }
-        System.out.println(number1 + " " + sign + " " + number2 + " = " + result);
+        System.out.printf("%.0f %c %.0f = ", number1, sign, number2);
     }
 }
