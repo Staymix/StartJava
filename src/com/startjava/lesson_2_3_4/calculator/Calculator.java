@@ -36,7 +36,7 @@ public class Calculator {
             case '%' :
                 result = number1 % number2;
         }
-        displayResult();
+        mathematicalExpression();
         return result;
     }
 
@@ -47,7 +47,7 @@ public class Calculator {
         number2 = Integer.parseInt(data[2]);
     }
 
-    public void displayResult() {
+    public void mathematicalExpression() {
         System.out.printf("%.0f %c %.0f = ", number1, sign, number2);
     }
 }
