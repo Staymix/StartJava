@@ -10,19 +10,13 @@ public class Calculator {
     private String[] data = new String[3];
     private double result;
 
-    public void setMathematicalExpression(String mathematicalExpression) {
-        this.mathematicalExpression = mathematicalExpression;
-        data = mathematicalExpression.split(" ");
-        number1 = Integer.parseInt(data[0]);
-        sign = data[1].charAt(0);
-        number2 = Integer.parseInt(data[2]);
-    }
-
     public double getResult() {
         return result;
     }
 
-    public void calculate() {
+    public double calculate(String mathematicalExpression) {
+        this.mathematicalExpression = mathematicalExpression;
+        assignValues();
         switch(sign) {
             case '*' :
                 result = number1 * number2;
@@ -42,6 +36,18 @@ public class Calculator {
             case '%' :
                 result = number1 % number2;
         }
+        displayResult();
+        return result;
+    }
+
+    public void assignValues() {
+        data = mathematicalExpression.split(" ");
+        number1 = Integer.parseInt(data[0]);
+        sign = data[1].charAt(0);
+        number2 = Integer.parseInt(data[2]);
+    }
+
+    public void displayResult() {
         System.out.printf("%.0f %c %.0f = ", number1, sign, number2);
     }
 }
