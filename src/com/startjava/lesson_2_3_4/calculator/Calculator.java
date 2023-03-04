@@ -5,20 +5,8 @@ public class Calculator {
     private double number2;
     private char sign;
 
-    public double getNumber1() {
-        return number1;
-    }
-
-    public double getNumber2() {
-        return number2;
-    }
-
-    public char getSign() {
-        return sign;
-    }
-
     public double calculate(String expression) {
-        perseExpression(expression);
+        parseExpression(expression);
         switch(sign) {
             case '*':
                 return number1 * number2;
@@ -36,11 +24,11 @@ public class Calculator {
         return sign;
     }
 
-    public void perseExpression(String expression) {
-        String[] data = new String[3];
-        data = expression.split(" ");
-        number1 = Integer.parseInt(data[0]);
-        sign = data[1].charAt(0);
-        number2 = Integer.parseInt(data[2]);
+    public void parseExpression(String expression) {
+        String[] partsExpression = new String[3];
+        partsExpression = expression.split(" ");
+        number1 = Integer.parseInt(partsExpression[0]);
+        sign = partsExpression[1].charAt(0);
+        number2 = Integer.parseInt(partsExpression[2]);
     }
 }
