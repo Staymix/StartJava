@@ -21,12 +21,11 @@ public class Calculator {
             case '%':
                 return number1 % number2;
         }
-        return sign;
+        return 0;
     }
 
     public void parseExpression(String expression) {
-        String[] partsExpression = new String[3];
-        partsExpression = expression.split(" ");
+        String[] partsExpression = expression.split(" ");
         number1 = Integer.parseInt(partsExpression[0]);
         sign = partsExpression[1].charAt(0);
         number2 = Integer.parseInt(partsExpression[2]);

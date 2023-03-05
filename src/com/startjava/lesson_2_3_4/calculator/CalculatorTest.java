@@ -13,7 +13,7 @@ public class CalculatorTest {
                 System.out.println("Введите математическое выражение: ");
                 String expression = scanner.nextLine();
                 double result = calculator.calculate(expression);
-                System.out.printf("%s = ", expression);
+                System.out.print(expression + " = ");
                 System.out.printf((result % 1 == 0 ? "%.0f" : "%.3f"), result);
             }
             System.out.println("\nХотите продолжить вычисления?[yes/no] :");

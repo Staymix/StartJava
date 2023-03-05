@@ -35,7 +35,7 @@ public class GuessNumber {
         do {
             System.out.println("Игрок " + player.getName() + " введите ваше число.");
             attempt++;
-            player.setNumber(attempt - 1, scanner.nextInt());
+            player.addNumber(attempt - 1, scanner.nextInt());
             if (isGuessed(player)) {
                 isGuessed = true;
                 break;
@@ -44,7 +44,7 @@ public class GuessNumber {
         if (attempt == 10) {
             System.out.println("У " + player.getName() + " закончились попытки.");
         }
-        displayArray(player);
+        displayArray(player, attempt);
         return isGuessed;
     }
 
@@ -63,8 +63,8 @@ public class GuessNumber {
         return false;
     }
 
-    public void displayArray(Player player) {
-        int[] enteredNumbers = Arrays.copyOf(player.getNumber(), attempt);
+    public void displayArray(Player player, int index) {
+        int[] enteredNumbers = player.getArrNumber(index);
         for (int i = 0; i < enteredNumbers.length; i++) {
             if (enteredNumbers.length / 2 == i) {
                 System.out.println();
@@ -72,7 +72,5 @@ public class GuessNumber {
             System.out.printf("%2d ", enteredNumbers[i]);
         }
         System.out.println();
-        Arrays.fill(enteredNumbers, 0, attempt, 0);
-        player.setNumber(enteredNumbers);
     }
 }
