@@ -28,7 +28,6 @@ public class GuessNumber {
     }
 
     public boolean isGuessed(Player player) {
-        player.setAttempt();
         boolean isGuessed = false;
         enterNumber(player);
         if (compareNumbers(player)) {

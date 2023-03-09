@@ -8,12 +8,10 @@ public class Player {
     private int attempt;
 
     public Player(String name) {
-
         this.name = name;
     }
 
     public String getName() {
-
         return name;
     }
 
@@ -22,6 +20,7 @@ public class Player {
     }
 
     public int getNumber() {
+        attempt++;
         return numbers[attempt - 1];
     }
 
@@ -29,16 +28,12 @@ public class Player {
         return attempt;
     }
 
-    public void setAttempt() {
-        attempt++;
-    }
-
     public void addNumber(int number) {
-        numbers[attempt - 1] = number;
+        numbers[attempt] = number;
     }
 
     public void clearNumbers() {
-        Arrays.fill(numbers, 0, attempt - 1, 0);
+        Arrays.fill(numbers, 0, attempt, 0);
         attempt = 0;
     }
 }
